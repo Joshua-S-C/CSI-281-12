@@ -1,4 +1,4 @@
-//
+//  Joshua Sinclair Chong
 //  PriorityQueue.h
 //  
 //  Defines a binary heap based priority queue class.
