@@ -131,7 +131,6 @@ TEST_CASE( "random PriorityQueue<int> test", "[rand PriorityQueue<int>]" ) {
         int i = sampleIntArray1[j];
         pq.push(i);
     }
-    
     REQUIRE( pq.getCount() == length );
     REQUIRE( pq.peek() == *max_element(sampleIntArray1, sampleIntArray1 + length) );
     

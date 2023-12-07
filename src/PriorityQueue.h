@@ -60,7 +60,7 @@ namespace csi281 {
         // for HEAP-MAXIMUM()
         // NOTE: Our heap starts at 0, not 1
         T peek() {
-            // YOUR CODE HERE
+            // YOUR CODE HERE   
             return heap[0];
         }
         
@@ -73,7 +73,7 @@ namespace csi281 {
         T pop() {
             // YOUR CODE HERE
             auto result = heap[0];
-            heap[0] = heap[heapSize];
+            heap[0] = heap[heapSize-1];
             heapSize--;
             maxHeapify(0);
             return result;
@@ -89,7 +89,17 @@ namespace csi281 {
         // the end of the vector heap
         void push(T key) {
             // YOUR CODE HERE
+            int index = heapSize;
 
+            heapSize++;
+            heap.resize(heapSize);
+
+            heap[index] = key;
+
+            while (index > 0 && heap[parent(index)] < heap[index]) {
+                swap(heap[index], heap[parent(index)]);
+                index = parent(index);
+            }
         }
         
         // How many items are in the priority queue?
@@ -113,14 +123,16 @@ namespace csi281 {
         void maxHeapify(int i) {
             // YOUR CODE HERE
             int max;
+            int left = left(i);
+            int right = right(i);
 
-            if (left(i) <= heapSize && heap[left(i)] > heap[i])
-                max = left(i);
+            if (left <= heapSize && heap[left] > heap[i])
+                max = left;
             else
                 max = i;
 
-            if (right(i) <= heapSize && heap[right(i)] > heap[max])
-                max = right(i);
+            if (right <= heapSize && heap[right] > heap[max])
+                max = right;
 
             if (max != i) {
                 swap(heap[i], heap[max]);
